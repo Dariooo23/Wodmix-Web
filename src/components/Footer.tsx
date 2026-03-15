@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FiArrowUpRight, FiMapPin, FiPhone, FiShare2 } from "react-icons/fi";
+import {
+  FiArrowUpRight,
+  FiMail,
+  FiMapPin,
+  FiPhone,
+  FiShare2,
+} from "react-icons/fi";
 
 const footerLinks = [
   { href: "/", label: "Strona główna" },
@@ -69,6 +75,20 @@ export const Footer = () => {
               >
                 <FiPhone className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>+48 888 858 998</span>
+              </a>
+              <a
+                href="tel:+48888977877"
+                className="inline-flex items-center gap-2 transition-colors duration-200 hover:text-white"
+              >
+                <FiPhone className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>+48 888 977 877</span>
+              </a>
+              <a
+                href="mailto:wodmix@wp.pl"
+                className="inline-flex items-center gap-2 transition-colors duration-200 hover:text-white"
+              >
+                <FiMail className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>wodmix@wp.pl</span>
               </a>
               <Link
                 href="/oddzialy"
