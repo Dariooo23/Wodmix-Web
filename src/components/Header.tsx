@@ -4,14 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import {
-  FiInfo,
-  FiMapPin,
-  FiMenu,
-  FiPackage,
-  FiPhone,
-  FiShare2,
-} from "react-icons/fi";
+import { FiInfo, FiMapPin, FiMenu, FiPackage, FiShare2 } from "react-icons/fi";
 
 export const Header = () => {
   const pathname = usePathname();
@@ -80,7 +73,7 @@ export const Header = () => {
           </div>
         </Link>
 
-        {/* Nawigacja i CTA */}
+        {/* Nawigacja */}
         <div className="flex items-center justify-end gap-2">
           <nav
             aria-label="Nawigacja główna"
@@ -123,16 +116,6 @@ export const Header = () => {
               </span>
             </Link>
           </nav>
-
-          <a
-            href="tel:+48888858998"
-            className={`${glassButtonClass} px-3 md:px-6 py-2 md:py-2.5`}
-          >
-            <span className={buttonContentClass}>
-              <FiPhone className="h-4 w-4 shrink-0" aria-hidden="true" />
-              <span>Zadzwoń</span>
-            </span>
-          </a>
 
           <details ref={mobileMenuRef} className="relative lg:hidden group">
             <summary
@@ -178,14 +161,6 @@ export const Header = () => {
                 <FiShare2 className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>Socials</span>
               </Link>
-              <a
-                href="tel:+48888858998"
-                className={mobileMenuItemClass}
-                onClick={closeMobileMenu}
-              >
-                <FiPhone className="h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>Zadzwoń</span>
-              </a>
             </nav>
           </details>
         </div>

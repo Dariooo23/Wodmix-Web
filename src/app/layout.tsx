@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
+import { FloatingContactFab } from "@/components/FloatingContactFab";
 import { Header } from "@/components/Header";
 import { RouteBodyClass } from "@/components/RouteBodyClass";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -42,6 +43,7 @@ export default function RootLayout({
         <RouteBodyClass />
         <Header />
         {children}
+        <FloatingContactFab />
         <Footer />
       </body>
     </html>
