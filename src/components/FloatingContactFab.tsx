@@ -75,7 +75,7 @@ export const FloatingContactFab = () => {
           aria-expanded={isOpen}
           aria-label={isOpen ? "Zamknij kontakt" : "Otwórz kontakt"}
           onClick={() => setIsOpen((prev) => !prev)}
-          className={`h-14 w-14 rounded-full border border-brand-blue-light/60 bg-brand-blue text-white text-2xl shadow-[0_14px_32px_rgba(0,63,115,0.35)] transform-gpu transition-[transform,background-color,border-color,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.05] hover:bg-brand-blue-light hover:border-brand-blue-light hover:shadow-[0_18px_36px_rgba(0,63,115,0.42)] active:translate-y-0 active:scale-100 ${
+          className={`h-18 w-18 rounded-full border border-brand-blue-light/60 bg-brand-blue text-white text-2xl shadow-[0_14px_32px_rgba(0,63,115,0.35)] transform-gpu transition-[transform,background-color,border-color,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.05] hover:bg-brand-blue-light hover:border-brand-blue-light hover:shadow-[0_18px_36px_rgba(0,63,115,0.42)] active:translate-y-0 active:scale-100 ${
             isOpen ? "" : "animate-[fabPulse_2.4s_ease-in-out_infinite]"
           }`}
         >
