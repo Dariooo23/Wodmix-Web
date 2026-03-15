@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #005b9f;
+  --color-brand-blue-light: #3381c0;
+  --color-brand-blue-dark: #003f73;
+
+  --color-brand-green: #2e7d32;
+  --color-brand-green-light: #60ad5e;
+  --color-brand-green-dark: #005005;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 antialiased selection:bg-brand-blue selection:text-white;
+  }
+
+  html.subpage-no-scrollbar,
+  body.subpage-no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  html.subpage-no-scrollbar::-webkit-scrollbar,
+  body.subpage-no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
