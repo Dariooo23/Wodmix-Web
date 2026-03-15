@@ -29,6 +29,11 @@ export const HomeScrollJump = ({
       }
     };
 
+    const releaseSnap = () => {
+      stopAnimation();
+      targetScrollTopRef.current = null;
+    };
+
     const runAnimation = () => {
       if (animationFrameRef.current !== null) {
         return;
@@ -90,7 +95,7 @@ export const HomeScrollJump = ({
     const scrollToTarget = (direction: "down" | "up") => {
       const targets = getTargets();
       if (targets.length === 0) {
-        return;
+        return false;
       }
 
       const currentIndex = getCurrentTargetIndex(targets);
@@ -106,7 +111,9 @@ export const HomeScrollJump = ({
           : Math.max(baseIndex - 1, -1);
 
       if (nextIndex === baseIndex) {
-        return;
+        releaseSnap();
+        activeTargetIndexRef.current = currentIndex;
+        return false;
       }
 
       activeTargetIndexRef.current = nextIndex;
@@ -122,6 +129,7 @@ export const HomeScrollJump = ({
 
       targetScrollTopRef.current = scrollTop;
       runAnimation();
+      return true;
     };
 
     const handleWheel = (event: WheelEvent) => {
@@ -129,8 +137,12 @@ export const HomeScrollJump = ({
         return;
       }
 
-      event.preventDefault();
-      scrollToTarget(event.deltaY > 0 ? "down" : "up");
+      const handled = scrollToTarget(event.deltaY > 0 ? "down" : "up");
+      if (handled) {
+        event.preventDefault();
+      } else {
+        releaseSnap();
+      }
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -145,8 +157,12 @@ export const HomeScrollJump = ({
         return;
       }
 
-      event.preventDefault();
-      scrollToTarget(isScrollDownKey ? "down" : "up");
+      const handled = scrollToTarget(isScrollDownKey ? "down" : "up");
+      if (handled) {
+        event.preventDefault();
+      } else {
+        releaseSnap();
+      }
     };
 
     const handleTouchStart = (event: TouchEvent) => {

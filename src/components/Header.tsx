@@ -1,13 +1,63 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FiMapPin, FiMenu, FiPackage, FiPhone, FiShare2 } from "react-icons/fi";
+import { usePathname } from "next/navigation";
+import {
+  FiInfo,
+  FiMapPin,
+  FiMenu,
+  FiPackage,
+  FiPhone,
+  FiShare2,
+} from "react-icons/fi";
 
 export const Header = () => {
+  const pathname = usePathname();
+  const mobileMenuRef = useRef<HTMLDetailsElement>(null);
   const glassButtonClass =
     "rounded-full border border-white/30 bg-white/10 text-white font-bold text-sm md:text-base shadow-[0_6px_18px_rgba(0,0,0,0.18)] transform-gpu transition-[transform,background-color,border-color,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.03] hover:bg-white/18 hover:border-white/45 hover:shadow-[0_10px_24px_rgba(0,0,0,0.22)] active:translate-y-0 active:scale-100 active:bg-white/16";
   const buttonContentClass = "inline-flex items-center gap-2";
   const mobileMenuItemClass =
     "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/12";
+
+  const closeMobileMenu = () => {
+    if (mobileMenuRef.current) {
+      mobileMenuRef.current.open = false;
+    }
+  };
+
+  useEffect(() => {
+    closeMobileMenu();
+  }, [pathname]);
+
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      const menu = mobileMenuRef.current;
+      if (!menu?.open) {
+        return;
+      }
+
+      if (!menu.contains(event.target as Node)) {
+        closeMobileMenu();
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeMobileMenu();
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-brand-blue-dark/10 bg-brand-blue-dark shadow-sm font-sans">
@@ -36,6 +86,15 @@ export const Header = () => {
             aria-label="Nawigacja główna"
             className="hidden lg:flex items-center gap-2"
           >
+            <Link
+              href="/o-nas"
+              className={`${glassButtonClass} px-3 md:px-6 py-2 md:py-2.5`}
+            >
+              <span className={buttonContentClass}>
+                <FiInfo className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>O nas</span>
+              </span>
+            </Link>
             <Link
               href="/oferta"
               className={`${glassButtonClass} px-3 md:px-6 py-2 md:py-2.5`}
@@ -75,7 +134,7 @@ export const Header = () => {
             </span>
           </a>
 
-          <details className="relative lg:hidden group">
+          <details ref={mobileMenuRef} className="relative lg:hidden group">
             <summary
               className={`${glassButtonClass} ${buttonContentClass} list-none cursor-pointer px-4 py-2.5 [&::-webkit-details-marker]:hidden`}
             >
@@ -87,19 +146,43 @@ export const Header = () => {
               aria-label="Menu mobilne"
               className="absolute right-0 top-full mt-3 w-64 rounded-3xl border border-white/20 bg-brand-blue-dark/95 p-2 backdrop-blur-xl shadow-[0_18px_48px_rgba(0,0,0,0.28)]"
             >
-              <Link href="/oferta" className={mobileMenuItemClass}>
+              <Link
+                href="/o-nas"
+                className={mobileMenuItemClass}
+                onClick={closeMobileMenu}
+              >
+                <FiInfo className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>O nas</span>
+              </Link>
+              <Link
+                href="/oferta"
+                className={mobileMenuItemClass}
+                onClick={closeMobileMenu}
+              >
                 <FiPackage className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>Oferta</span>
               </Link>
-              <Link href="/oddzialy" className={mobileMenuItemClass}>
+              <Link
+                href="/oddzialy"
+                className={mobileMenuItemClass}
+                onClick={closeMobileMenu}
+              >
                 <FiMapPin className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>Oddziały</span>
               </Link>
-              <Link href="/socials" className={mobileMenuItemClass}>
+              <Link
+                href="/socials"
+                className={mobileMenuItemClass}
+                onClick={closeMobileMenu}
+              >
                 <FiShare2 className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>Socials</span>
               </Link>
-              <a href="tel:+48888858998" className={mobileMenuItemClass}>
+              <a
+                href="tel:+48888858998"
+                className={mobileMenuItemClass}
+                onClick={closeMobileMenu}
+              >
                 <FiPhone className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>Zadzwoń</span>
               </a>

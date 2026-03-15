@@ -22,8 +22,8 @@ const platforms = [
     name: "Facebook",
     icon: FaFacebookF,
     bgColor: "#1877F2",
-    handle: "@WodmixPacanow", // TODO: uzupełnij
-    description: "Aktualności, realizacje i ogłoszenia firmowe.",
+    handle: "Profil 1",
+    description: "Opis profilu 1.",
     href: "#", // TODO: wstaw link do profilu
     ctaLabel: "Obserwuj",
   },
@@ -32,8 +32,8 @@ const platforms = [
     name: "Instagram",
     icon: FaInstagram,
     bgColor: "#E1306C",
-    handle: "@wodmix", // TODO: uzupełnij
-    description: "Zdjęcia z realizacji i kulisy pracy zespołu.",
+    handle: "Profil 2",
+    description: "Opis profilu 2.",
     href: "#", // TODO: wstaw link do profilu
     ctaLabel: "Obserwuj",
   },
@@ -42,8 +42,8 @@ const platforms = [
     name: "YouTube",
     icon: FaYoutube,
     bgColor: "#FF0000",
-    handle: "Kanał Wodmix", // TODO: uzupełnij
-    description: "Filmy z montaży, poradniki i prezentacje realizacji.",
+    handle: "Profil 3",
+    description: "Opis profilu 3.",
     href: "#", // TODO: wstaw link do kanału
     ctaLabel: "Subskrybuj",
   },
@@ -52,8 +52,8 @@ const platforms = [
     name: "TikTok",
     icon: FaTiktok,
     bgColor: "#010101",
-    handle: "@wodmix", // TODO: uzupełnij
-    description: "Krótkie filmiki z codziennej pracy i ciekawostki.",
+    handle: "Profil 4",
+    description: "Opis profilu 4.",
     href: "#", // TODO: wstaw link do profilu
     ctaLabel: "Obserwuj",
   },
@@ -62,8 +62,8 @@ const platforms = [
     name: "X (Twitter)",
     icon: FaXTwitter,
     bgColor: "#14171A",
-    handle: "@wodmix", // TODO: uzupełnij
-    description: "Szybkie informacje i komentarze branżowe.",
+    handle: "Profil 5",
+    description: "Opis profilu 5.",
     href: "#", // TODO: wstaw link do profilu
     ctaLabel: "Obserwuj",
   },
@@ -72,8 +72,8 @@ const platforms = [
     name: "LinkedIn",
     icon: FaLinkedinIn,
     bgColor: "#0A66C2",
-    handle: "Wodmix", // TODO: uzupełnij
-    description: "Profil firmowy i aktualności ze świata instalacji.",
+    handle: "Profil 6",
+    description: "Opis profilu 6.",
     href: "#", // TODO: wstaw link do profilu
     ctaLabel: "Obserwuj",
   },

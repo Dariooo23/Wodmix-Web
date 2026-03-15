@@ -32,9 +32,8 @@ export const storesData: StoreLocation[] = [
 export const servicesData: Service[] = [
   {
     id: "service-installation-1",
-    title: "Instalacje wodno-kanalizacyjne",
-    description:
-      "Projektowanie i wykonanie instalacji wodno-kanalizacyjnych dla domów i obiektów użytkowych.",
+    title: "Oferta 1",
+    description: "Opis oferty 1.",
     imageUrl: "/UslugiWodnoKanalizacyjne1.png",
     availableAt: ["PACANOW", "LUBNICE"],
     category: "INSTALLATION",
@@ -42,9 +41,8 @@ export const servicesData: Service[] = [
   },
   {
     id: "service-heavy-1",
-    title: "Usługi koparką i koparkoładowarką",
-    description:
-      "Realizacja wykopów, niwelacji terenu i prac przygotowawczych pod inwestycje.",
+    title: "Oferta 2",
+    description: "Opis oferty 2.",
     imageUrl: "/UslugiKoparkoLadowarka1.png",
     availableAt: ["PACANOW", "LUBNICE"],
     category: "HEAVY_MACHINERY",
@@ -52,9 +50,8 @@ export const servicesData: Service[] = [
   },
   {
     id: "service-installation-2",
-    title: "Instalacje C.O., C.W.U., Gaz",
-    description:
-      "Kompleksowy montaż i modernizacja instalacji centralnego ogrzewania, ciepłej wody oraz gazu.",
+    title: "Oferta 3",
+    description: "Opis oferty 3.",
     imageUrl: "/Instalacje1.png",
     availableAt: ["PACANOW", "LUBNICE"],
     category: "INSTALLATION",
@@ -62,9 +59,8 @@ export const servicesData: Service[] = [
   },
   {
     id: "service-installation-3",
-    title: "Instalacje zewnętrzne",
-    description:
-      "Wykonanie instalacji zewnętrznych dla budynków mieszkalnych i przemysłowych.",
+    title: "Oferta 4",
+    description: "Opis oferty 4.",
     imageUrl: "/Instalacje2.png",
     availableAt: ["PACANOW", "LUBNICE"],
     category: "INSTALLATION",
@@ -72,9 +68,8 @@ export const servicesData: Service[] = [
   },
   {
     id: "service-installation-4",
-    title: "Przyłącza wodne/kanalizacyjne/gazowe",
-    description:
-      "Budowa i uruchomienie przyłączy wodnych, kanalizacyjnych oraz gazowych.",
+    title: "Oferta 5",
+    description: "Opis oferty 5.",
     imageUrl: "/Instalacje3.png",
     availableAt: ["PACANOW", "LUBNICE"],
     category: "INSTALLATION",
@@ -82,9 +77,8 @@ export const servicesData: Service[] = [
   },
   {
     id: "service-installation-5",
-    title: "Przydomowe oczyszczalnie ścieków mechaniczne i biologiczne",
-    description:
-      "Dobór, montaż i serwis przydomowych oczyszczalni ścieków w technologii mechanicznej i biologicznej.",
+    title: "Oferta 6",
+    description: "Opis oferty 6.",
     imageUrl: "/UslugiWodnoKanalizacyjne2.png",
     availableAt: ["PACANOW", "LUBNICE"],
     category: "INSTALLATION",
@@ -92,9 +86,8 @@ export const servicesData: Service[] = [
   },
   {
     id: "service-installation-6",
-    title: "Pompy Ciepła",
-    description:
-      "Montaż pomp ciepła wraz z doborem urządzenia i konfiguracją całego systemu.",
+    title: "Oferta 7",
+    description: "Opis oferty 7.",
     imageUrl: "/PompaCiepla1.png",
     availableAt: ["PACANOW", "LUBNICE"],
     category: "INSTALLATION",
@@ -102,9 +95,8 @@ export const servicesData: Service[] = [
   },
   {
     id: "service-consulting-1",
-    title: 'Kompleksowa obsługa programu "Czyste Powietrze"',
-    description:
-      "Wsparcie od przygotowania wniosku po rozliczenie programu Czyste Powietrze.",
+    title: "Oferta 8",
+    description: "Opis oferty 8.",
     imageUrl: "/ProgramCzystePowietrze.png",
     availableAt: ["PACANOW", "LUBNICE"],
     category: "CONSULTING",
