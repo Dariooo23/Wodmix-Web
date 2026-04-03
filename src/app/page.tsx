@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { servicesData, storesData } from "@/data/services";
 
 export const metadata: Metadata = {
 	title: "Strona główna | Wodmix",
@@ -7,36 +6,33 @@ export const metadata: Metadata = {
 		"Poznaj firme Wodmix i obszary specjalizacji: instalacje sanitarne, pompy ciepla i prace ziemne.",
 };
 
-const serviceCount = servicesData.length;
-const branchCount = storesData.length;
-const specializationCount = new Set(
-	servicesData.map(service => service.category),
-).size;
-const contactChannels = 4;
-
 const stats = [
 	{
-		value: `${serviceCount}`,
-		label: "ofert usługowych w stałej ofercie",
+		value: "14+",
+		label: "lat doświadczenia na rynku",
+		note: "Firma działa od 2012 roku",
 	},
 	{
-		value: `${branchCount}`,
-		label: "oddziały obsługujące klientów",
+		value: "5+",
+		label: "pionów instalacyjnych",
+		note: "Wod-Kan, C.O., Gaz, oczyszczalnie biologiczne, roboty ziemne",
 	},
 	{
-		value: `${specializationCount}`,
-		label: "główne obszary specjalizacji",
+		value: "100%",
+		label: "kompleksowej obsługi dotacji",
+		note: "Czyste Powietrze, Moja Woda i formalności po stronie Wodmix",
 	},
 	{
-		value: `${contactChannels}`,
-		label: "kanały szybkiego kontaktu",
+		value: "500+",
+		label: "zrealizowanych projektów",
+		note: "Bogate doświadczenie w różnych segmentach budowlanych",
 	},
 ];
 
 const highlights = [
 	"Instalacje wodno-kanalizacyjne, grzewcze i sanitarne",
 	"Prace koparko-ładowarką i roboty ziemne",
-	"Obsługa Pacanowa i Łubnic",
+	"Obsługa na terenie województwa Świętokrzyskiego",
 ];
 
 export default function Home() {
@@ -61,6 +57,9 @@ export default function Home() {
 								</p>
 								<p className='text-sm md:text-[15px] text-brand-blue-dark/70 mt-1 leading-snug'>
 									{stat.label}
+								</p>
+								<p className='text-xs md:text-sm text-brand-blue/60 mt-2 leading-snug'>
+									{stat.note}
 								</p>
 							</div>
 						))}
