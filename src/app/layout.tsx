@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { FloatingContactFab } from "@/components/FloatingContactFab";
 import { Header } from "@/components/Header";
+import { PageFogReveal } from "@/components/PageFogReveal";
 import { RouteBodyClass } from "@/components/RouteBodyClass";
 import { WaterBackground } from "@/components/WaterBackground";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -45,7 +46,7 @@ export default function RootLayout({
 				<div className='relative z-10'>
 					<RouteBodyClass />
 					<Header />
-					{children}
+					<PageFogReveal>{children}</PageFogReveal>
 					<FloatingContactFab />
 					<Footer />
 					<Analytics />
