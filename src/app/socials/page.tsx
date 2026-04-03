@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
-import {
-	FaFacebookF,
-	FaInstagram,
-	FaLinkedinIn,
-	FaTiktok,
-	FaXTwitter,
-	FaYoutube,
-} from "react-icons/fa6";
+import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
 export const metadata: Metadata = {
@@ -22,8 +15,6 @@ const platforms = [
 		name: "Facebook",
 		icon: FaFacebookF,
 		bgColor: "#1877F2",
-		handle: "Profil 1",
-		description: "Opis profilu 1.",
 		href: "#", // TODO: wstaw link do profilu
 		ctaLabel: "Obserwuj",
 	},
@@ -32,48 +23,14 @@ const platforms = [
 		name: "Instagram",
 		icon: FaInstagram,
 		bgColor: "#E1306C",
-		handle: "Profil 2",
-		description: "Opis profilu 2.",
 		href: "#", // TODO: wstaw link do profilu
 		ctaLabel: "Obserwuj",
-	},
-	{
-		id: "youtube",
-		name: "YouTube",
-		icon: FaYoutube,
-		bgColor: "#FF0000",
-		handle: "Profil 3",
-		description: "Opis profilu 3.",
-		href: "#", // TODO: wstaw link do kanału
-		ctaLabel: "Subskrybuj",
 	},
 	{
 		id: "tiktok",
 		name: "TikTok",
 		icon: FaTiktok,
 		bgColor: "#010101",
-		handle: "Profil 4",
-		description: "Opis profilu 4.",
-		href: "#", // TODO: wstaw link do profilu
-		ctaLabel: "Obserwuj",
-	},
-	{
-		id: "x",
-		name: "X (Twitter)",
-		icon: FaXTwitter,
-		bgColor: "#14171A",
-		handle: "Profil 5",
-		description: "Opis profilu 5.",
-		href: "#", // TODO: wstaw link do profilu
-		ctaLabel: "Obserwuj",
-	},
-	{
-		id: "linkedin",
-		name: "LinkedIn",
-		icon: FaLinkedinIn,
-		bgColor: "#0A66C2",
-		handle: "Profil 6",
-		description: "Opis profilu 6.",
 		href: "#", // TODO: wstaw link do profilu
 		ctaLabel: "Obserwuj",
 	},

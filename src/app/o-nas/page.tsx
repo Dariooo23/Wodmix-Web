@@ -76,21 +76,25 @@ export default function AboutPage() {
 					</p>
 				</div>
 
-				<div className='absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-brand-blue/30 animate-bounce pointer-events-none select-none'>
-					<span className='text-[10px] tracking-widest uppercase'>Przewiń</span>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						className='h-4 w-4'
-						fill='none'
-						viewBox='0 0 24 24'
-						stroke='currentColor'
-						strokeWidth={2}>
-						<path
-							strokeLinecap='round'
-							strokeLinejoin='round'
-							d='M19 9l-7 7-7-7'
-						/>
-					</svg>
+				<div className='absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce pointer-events-none select-none'>
+					<div className='flex items-center gap-2 rounded-full border border-brand-blue/20 bg-white/82 px-4 py-2 shadow-[0_10px_24px_rgba(0,63,115,0.12)] backdrop-blur-sm text-brand-blue-dark'>
+						<span className='text-[10px] tracking-[0.28em] uppercase font-semibold'>
+							Przewiń w dół
+						</span>
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							className='h-5 w-5 text-brand-blue'
+							fill='none'
+							viewBox='0 0 24 24'
+							stroke='currentColor'
+							strokeWidth={2.5}>
+							<path
+								strokeLinecap='round'
+								strokeLinejoin='round'
+								d='M19 9l-7 7-7-7'
+							/>
+						</svg>
+					</div>
 				</div>
 			</section>
 
