@@ -5,8 +5,10 @@ import { useEffect, useRef, useState } from "react";
 type Ripple = {
 	x: number;
 	y: number;
-	radius: number;
-	alpha: number;
+	strength: number;
+	age: number;
+	speed: number;
+	wavelength: number;
 };
 
 export function WaterBackground() {
@@ -15,6 +17,11 @@ export function WaterBackground() {
 	const ripplesRef = useRef<Ripple[]>([]);
 	const pointerRef = useRef({ x: 0, y: 0, active: false });
 	const smoothPointerRef = useRef({ x: 0, y: 0 });
+	const previousFrameTimeRef = useRef<number | null>(null);
+	const lastEmitTimeRef = useRef(0);
+	const lastPointerSampleRef = useRef<{ x: number; y: number; time: number } | null>(
+		null,
+	);
 	const [reducedMotion, setReducedMotion] = useState(false);
 
 	useEffect(() => {
@@ -62,17 +69,34 @@ export function WaterBackground() {
 		const onPointerMove = (event: PointerEvent) => {
 			const pointerX = event.clientX;
 			const pointerY = event.clientY;
+			const now = performance.now();
 
 			pointerRef.current.x = pointerX;
 			pointerRef.current.y = pointerY;
 			pointerRef.current.active = true;
 
-			ripplesRef.current.push({
-				x: pointerX,
-				y: pointerY,
-				radius: 10,
-				alpha: 0.24,
-			});
+			let movementStrength = 0.7;
+			const lastSample = lastPointerSampleRef.current;
+			if (lastSample) {
+				const deltaTime = Math.max(16, now - lastSample.time);
+				const distance = Math.hypot(pointerX - lastSample.x, pointerY - lastSample.y);
+				const velocity = distance / deltaTime;
+				movementStrength = Math.min(2.2, 0.7 + velocity * 2.6);
+			}
+
+			if (now - lastEmitTimeRef.current > 42) {
+				ripplesRef.current.push({
+					x: pointerX,
+					y: pointerY,
+					strength: movementStrength,
+					age: 0,
+					speed: 220 + Math.random() * 120,
+					wavelength: 60 + Math.random() * 26,
+				});
+				lastEmitTimeRef.current = now;
+			}
+
+			lastPointerSampleRef.current = { x: pointerX, y: pointerY, time: now };
 
 			if (ripplesRef.current.length > 14) {
 				ripplesRef.current.shift();
@@ -82,6 +106,9 @@ export function WaterBackground() {
 		const drawWaves = (time: number) => {
 			const width = window.innerWidth;
 			const height = window.innerHeight;
+			const previousFrameTime = previousFrameTimeRef.current ?? time;
+			const deltaTimeSeconds = Math.min(0.033, (time - previousFrameTime) / 1000);
+			previousFrameTimeRef.current = time;
 
 			context.clearRect(0, 0, width, height);
 
@@ -98,6 +125,13 @@ export function WaterBackground() {
 
 			const pointerX = smoothPointerRef.current.x;
 			const pointerY = smoothPointerRef.current.y;
+
+			ripplesRef.current = ripplesRef.current
+				.map(ripple => ({
+					...ripple,
+					age: ripple.age + deltaTimeSeconds,
+				}))
+				.filter(ripple => ripple.age < 2.8);
 
 			const wavesCount = 6;
 			for (let layer = 0; layer < wavesCount; layer += 1) {
@@ -121,11 +155,39 @@ export function WaterBackground() {
 						1 - distanceToPointer / (width * 0.55),
 					);
 
+					let disturbanceOffset = 0;
+					for (const ripple of ripplesRef.current) {
+						const waveRadius = ripple.age * ripple.speed;
+						const distance = Math.hypot(x - ripple.x, baseY - ripple.y);
+						const frontDistance = distance - waveRadius;
+						if (Math.abs(frontDistance) > ripple.wavelength * 2.8) {
+							continue;
+						}
+
+						const gaussianEnvelope = Math.exp(
+							-((frontDistance * frontDistance) /
+								(2 * ripple.wavelength * ripple.wavelength)),
+						);
+						const radialWave =
+							Math.sin((distance / ripple.wavelength) * Math.PI * 2 - ripple.age * 7) *
+							gaussianEnvelope;
+
+						disturbanceOffset += radialWave * ripple.strength * (1 + layer * 0.2) * 4.6;
+					}
+
+					const cursorField =
+						Math.exp(-distanceToPointer / 280) *
+						Math.exp(-Math.abs(baseY - pointerY) / 180) *
+						Math.sin(time * 0.01 + x * 0.015 + layer * 0.7) *
+						6.5;
+
 					const y =
 						baseY +
 						Math.sin(x * frequency + time * speed + layer * 0.8) *
 							waveAmplitude *
-							(0.45 + horizontalInfluence * 0.55);
+							(0.45 + horizontalInfluence * 0.55) +
+						disturbanceOffset +
+						cursorField;
 
 					context.lineTo(x, y);
 				}
@@ -150,22 +212,6 @@ export function WaterBackground() {
 			context.fillStyle = light;
 			context.fillRect(0, 0, width, height);
 
-			ripplesRef.current = ripplesRef.current
-				.map(ripple => ({
-					...ripple,
-					radius: ripple.radius + 1.8,
-					alpha: ripple.alpha * 0.97,
-				}))
-				.filter(ripple => ripple.alpha > 0.015);
-
-			for (const ripple of ripplesRef.current) {
-				context.beginPath();
-				context.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
-				context.strokeStyle = `rgba(0, 91, 159, ${ripple.alpha})`;
-				context.lineWidth = 1.2;
-				context.stroke();
-			}
-
 			animationFrameRef.current = window.requestAnimationFrame(drawWaves);
 		};
 
@@ -178,6 +224,10 @@ export function WaterBackground() {
 		return () => {
 			window.removeEventListener("resize", resize);
 			window.removeEventListener("pointermove", onPointerMove);
+			previousFrameTimeRef.current = null;
+			lastPointerSampleRef.current = null;
+			lastEmitTimeRef.current = 0;
+			ripplesRef.current = [];
 			if (animationFrameRef.current !== null) {
 				window.cancelAnimationFrame(animationFrameRef.current);
 			}
