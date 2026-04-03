@@ -86,24 +86,24 @@ export function WaterBackground() {
 					pointerY - lastSample.y,
 				);
 				const velocity = distance / deltaTime;
-				movementStrength = Math.min(2.2, 0.7 + velocity * 2.6);
+				movementStrength = Math.min(1.2, 0.35 + velocity * 1.1);
 			}
 
-			if (now - lastEmitTimeRef.current > 42) {
+			if (now - lastEmitTimeRef.current > 100) {
 				ripplesRef.current.push({
 					x: pointerX,
 					y: pointerY,
 					strength: movementStrength,
 					age: 0,
-					speed: 220 + Math.random() * 120,
-					wavelength: 60 + Math.random() * 26,
+					speed: 135 + Math.random() * 55,
+					wavelength: 160 + Math.random() * 60,
 				});
 				lastEmitTimeRef.current = now;
 			}
 
 			lastPointerSampleRef.current = { x: pointerX, y: pointerY, time: now };
 
-			if (ripplesRef.current.length > 14) {
+			if (ripplesRef.current.length > 6) {
 				ripplesRef.current.shift();
 			}
 		};
@@ -139,18 +139,18 @@ export function WaterBackground() {
 					...ripple,
 					age: ripple.age + deltaTimeSeconds,
 				}))
-				.filter(ripple => ripple.age < 2.8);
+				.filter(ripple => ripple.age < 2.4);
 
 			const wavesCount = 6;
 			for (let layer = 0; layer < wavesCount; layer += 1) {
 				const layerRatio = layer / wavesCount;
 				const baseY = height * (0.2 + layerRatio * 0.16);
-				const waveAmplitudeBase = 8 + layer * 1.7;
+				const waveAmplitudeBase = 6 + layer * 1.0;
 				const pointerInfluence =
 					1 - Math.min(Math.abs(pointerY - baseY) / (height * 0.5), 1);
-				const waveAmplitude = waveAmplitudeBase + pointerInfluence * 14;
-				const frequency = 0.011 + layer * 0.0018;
-				const speed = 0.001 + layer * 0.00024;
+				const waveAmplitude = waveAmplitudeBase + pointerInfluence * 10;
+				const frequency = 0.0065 + layer * 0.0011;
+				const speed = 0.00075 + layer * 0.00017;
 
 				context.beginPath();
 				context.moveTo(0, height);
@@ -168,38 +168,37 @@ export function WaterBackground() {
 						const waveRadius = ripple.age * ripple.speed;
 						const distance = Math.hypot(x - ripple.x, baseY - ripple.y);
 						const frontDistance = distance - waveRadius;
-						if (Math.abs(frontDistance) > ripple.wavelength * 2.8) {
+						if (Math.abs(frontDistance) > ripple.wavelength * 2.4) {
 							continue;
 						}
 
-						const gaussianEnvelope = Math.exp(
+						const crest = Math.exp(
 							-(
 								(frontDistance * frontDistance) /
 								(2 * ripple.wavelength * ripple.wavelength)
 							),
 						);
-						const radialWave =
-							Math.sin(
-								(distance / ripple.wavelength) * Math.PI * 2 - ripple.age * 7,
-							) * gaussianEnvelope;
+						const trough = Math.exp(
+							-(
+								((frontDistance + ripple.wavelength * 0.9) *
+									(frontDistance + ripple.wavelength * 0.9)) /
+								(2 * (ripple.wavelength * 1.3) * (ripple.wavelength * 1.3))
+							),
+						);
 
 						disturbanceOffset +=
-							radialWave * ripple.strength * (1 + layer * 0.2) * 4.6;
+							(crest - trough * 0.35) *
+							ripple.strength *
+							(1 + layer * 0.12) *
+							2.85;
 					}
-
-					const cursorField =
-						Math.exp(-distanceToPointer / 280) *
-						Math.exp(-Math.abs(baseY - pointerY) / 180) *
-						Math.sin(time * 0.01 + x * 0.015 + layer * 0.7) *
-						6.5;
 
 					const y =
 						baseY +
 						Math.sin(x * frequency + time * speed + layer * 0.8) *
 							waveAmplitude *
 							(0.45 + horizontalInfluence * 0.55) +
-						disturbanceOffset +
-						cursorField;
+						disturbanceOffset;
 
 					context.lineTo(x, y);
 				}
@@ -217,9 +216,9 @@ export function WaterBackground() {
 				0,
 				pointerX,
 				pointerY,
-				Math.max(width, height) * 0.4,
+				Math.max(width, height) * 0.2,
 			);
-			light.addColorStop(0, "rgba(120, 190, 255, 0.26)");
+			light.addColorStop(0, "rgba(120, 190, 255, 0.19)");
 			light.addColorStop(1, "rgba(120, 190, 255, 0)");
 			context.fillStyle = light;
 			context.fillRect(0, 0, width, height);
