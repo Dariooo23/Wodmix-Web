@@ -8,10 +8,9 @@ interface PageFogRevealProps {
 
 export function PageFogReveal({ children }: PageFogRevealProps) {
 	const pathname = usePathname();
-	const isSubpage = pathname !== "/";
 
 	return (
-		<div key={pathname} className={isSubpage ? "fog-reveal-page" : undefined}>
+		<div key={pathname} className='fog-reveal-page'>
 			{children}
 		</div>
 	);
