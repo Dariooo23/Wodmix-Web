@@ -19,9 +19,11 @@ export function WaterBackground() {
 	const smoothPointerRef = useRef({ x: 0, y: 0 });
 	const previousFrameTimeRef = useRef<number | null>(null);
 	const lastEmitTimeRef = useRef(0);
-	const lastPointerSampleRef = useRef<{ x: number; y: number; time: number } | null>(
-		null,
-	);
+	const lastPointerSampleRef = useRef<{
+		x: number;
+		y: number;
+		time: number;
+	} | null>(null);
 	const [reducedMotion, setReducedMotion] = useState(false);
 
 	useEffect(() => {
@@ -79,7 +81,10 @@ export function WaterBackground() {
 			const lastSample = lastPointerSampleRef.current;
 			if (lastSample) {
 				const deltaTime = Math.max(16, now - lastSample.time);
-				const distance = Math.hypot(pointerX - lastSample.x, pointerY - lastSample.y);
+				const distance = Math.hypot(
+					pointerX - lastSample.x,
+					pointerY - lastSample.y,
+				);
 				const velocity = distance / deltaTime;
 				movementStrength = Math.min(2.2, 0.7 + velocity * 2.6);
 			}
@@ -107,7 +112,10 @@ export function WaterBackground() {
 			const width = window.innerWidth;
 			const height = window.innerHeight;
 			const previousFrameTime = previousFrameTimeRef.current ?? time;
-			const deltaTimeSeconds = Math.min(0.033, (time - previousFrameTime) / 1000);
+			const deltaTimeSeconds = Math.min(
+				0.033,
+				(time - previousFrameTime) / 1000,
+			);
 			previousFrameTimeRef.current = time;
 
 			context.clearRect(0, 0, width, height);
@@ -165,14 +173,18 @@ export function WaterBackground() {
 						}
 
 						const gaussianEnvelope = Math.exp(
-							-((frontDistance * frontDistance) /
-								(2 * ripple.wavelength * ripple.wavelength)),
+							-(
+								(frontDistance * frontDistance) /
+								(2 * ripple.wavelength * ripple.wavelength)
+							),
 						);
 						const radialWave =
-							Math.sin((distance / ripple.wavelength) * Math.PI * 2 - ripple.age * 7) *
-							gaussianEnvelope;
+							Math.sin(
+								(distance / ripple.wavelength) * Math.PI * 2 - ripple.age * 7,
+							) * gaussianEnvelope;
 
-						disturbanceOffset += radialWave * ripple.strength * (1 + layer * 0.2) * 4.6;
+						disturbanceOffset +=
+							radialWave * ripple.strength * (1 + layer * 0.2) * 4.6;
 					}
 
 					const cursorField =
