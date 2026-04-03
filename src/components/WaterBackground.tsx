@@ -48,7 +48,7 @@ export function WaterBackground() {
 				const baseY = height * (0.2 + layerRatio * 0.16);
 				const waveAmplitudeBase = 6 + layer * 1.0;
 				const frequency = 0.0065 + layer * 0.0011;
-				const scrollPhase = scrollY * (0.0016 + layer * 0.00033);
+				const scrollPhase = scrollY * (0.0030 + layer * 0.00066);
 
 				context.beginPath();
 				context.moveTo(0, height);
