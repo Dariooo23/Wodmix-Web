@@ -71,7 +71,7 @@ export function WaterBackground() {
 				x: pointerX,
 				y: pointerY,
 				radius: 10,
-				alpha: 0.18,
+				alpha: 0.24,
 			});
 
 			if (ripplesRef.current.length > 14) {
@@ -87,7 +87,7 @@ export function WaterBackground() {
 
 			const gradient = context.createLinearGradient(0, 0, 0, height);
 			gradient.addColorStop(0, "rgba(248, 252, 255, 0.95)");
-			gradient.addColorStop(1, "rgba(235, 246, 255, 0.95)");
+			gradient.addColorStop(1, "rgba(210, 234, 252, 0.98)");
 			context.fillStyle = gradient;
 			context.fillRect(0, 0, width, height);
 
@@ -133,7 +133,7 @@ export function WaterBackground() {
 				context.lineTo(width, height);
 				context.closePath();
 
-				context.fillStyle = `rgba(0, 91, 159, ${0.035 + layer * 0.017})`;
+				context.fillStyle = `rgba(0, 91, 159, ${0.055 + layer * 0.022})`;
 				context.fill();
 			}
 
@@ -145,7 +145,7 @@ export function WaterBackground() {
 				pointerY,
 				Math.max(width, height) * 0.4,
 			);
-			light.addColorStop(0, "rgba(120, 190, 255, 0.16)");
+			light.addColorStop(0, "rgba(120, 190, 255, 0.26)");
 			light.addColorStop(1, "rgba(120, 190, 255, 0)");
 			context.fillStyle = light;
 			context.fillRect(0, 0, width, height);
