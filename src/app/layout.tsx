@@ -4,6 +4,7 @@ import { FloatingContactFab } from "@/components/FloatingContactFab";
 import { Header } from "@/components/Header";
 import { RouteBodyClass } from "@/components/RouteBodyClass";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -45,6 +46,7 @@ export default function RootLayout({
         {children}
         <FloatingContactFab />
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
