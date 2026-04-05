@@ -8,7 +8,6 @@ export const storesData: StoreLocation[] = [
 		postalCode: "28-133",
 		phones: {
 			primary: "+48 888 858 998",
-			secondary: "+48 888 977 877",
 		},
 		email: "wodmix@wp.pl",
 		googleMapsUrl: "https://maps.google.com/?q=Olesnicka+1,+28-133+Pacanow",
@@ -20,8 +19,7 @@ export const storesData: StoreLocation[] = [
 		street: "ŁUBNICE 73A",
 		postalCode: "28-232",
 		phones: {
-			primary: "+48 888 858 998",
-			secondary: "+48 888 977 877",
+			primary: "+48 888 858 449",
 		},
 		email: "wodmix@wp.pl",
 		googleMapsUrl: "https://maps.google.com/?q=Lubnice+73A,+28-232+Lubnice",
