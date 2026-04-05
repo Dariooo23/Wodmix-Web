@@ -1,3 +1,10 @@
+---
+name: agentic-engineering
+description: |
+    Domain knowledge for building and maintaining the Jointhubs agentic AI system.
+    Use when: "agent setup", "custom agents", "skills", "prompts", "instructions", "MCP", "agent architecture".
+---
+
 # Agentic Engineering Skill
 
 > Domain knowledge for building and maintaining the Jointhubs agentic AI system.

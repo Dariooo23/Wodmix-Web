@@ -4,7 +4,16 @@ import { StoreLocator } from "@/components/StoreLocator";
 
 export const metadata: Metadata = {
 	title: "Oddziały",
-	description: "Znajdź i skontaktuj się z wybranym oddziałem Wodmix.",
+	description:
+		"Dane oddziałów Wodmix w Pacanowie i Łubnicach. Skontaktuj się telefonicznie lub mailowo - obsługujemy Powiat Busko-Zdrój i województwo świętokrzyskie.",
+	keywords: [
+		"oddziały Wodmix",
+		"Pacanów",
+		"Łubnice",
+		"Powiat Busko-Zdrój",
+		"Świętokrzyskie",
+		"kontakt hydraulik",
+	],
 };
 
 export default function BranchesPage() {
@@ -18,7 +27,7 @@ export default function BranchesPage() {
 						Nasze oddziały
 					</h1>
 					<p className='text-brand-blue-dark mt-2 max-w-2xl mx-auto'>
-						Znajdź i skontaktuj się z wybranym sklepem Wodmix.
+						Znajdź i skontaktuj się z wybranym oddziałem Wodmix.
 					</p>
 				</div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { Service } from "@/types";
 
 interface ServiceCatalogProps {
@@ -38,7 +38,7 @@ export const ServiceCatalog = ({ initialServices }: ServiceCatalogProps) => {
 		);
 	}, [displayedServices]);
 
-	const resetScrollToMiddleLoop = () => {
+	const resetScrollToMiddleLoop = useCallback(() => {
 		const list = listRef.current;
 		if (!list || displayedServices.length === 0) {
 			return;
@@ -46,11 +46,11 @@ export const ServiceCatalog = ({ initialServices }: ServiceCatalogProps) => {
 
 		const singleLoopHeight = list.scrollHeight / 3;
 		list.scrollTop = singleLoopHeight;
-	};
+	}, [displayedServices]);
 
 	useEffect(() => {
 		resetScrollToMiddleLoop();
-	}, [displayedServices]);
+	}, [resetScrollToMiddleLoop]);
 
 	useEffect(() => {
 		const list = listRef.current;
@@ -148,21 +148,15 @@ export const ServiceCatalog = ({ initialServices }: ServiceCatalogProps) => {
 
 			{selectedServiceOrFallback && (
 				<section className='max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-7 items-stretch'>
-					<article className='relative min-h-[17rem] rounded-2xl overflow-hidden shadow-sm border-2 border-dashed border-brand-blue/20 bg-brand-blue/6 flex flex-col items-center justify-center gap-3 text-brand-blue/40 p-6'>
-						<svg
-							xmlns='http://www.w3.org/2000/svg'
-							className='h-12 w-12'
-							fill='none'
-							viewBox='0 0 24 24'
-							stroke='currentColor'
-							strokeWidth={1.5}>
-							<path
-								strokeLinecap='round'
-								strokeLinejoin='round'
-								d='M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 3h18M3 21h18'
-							/>
-						</svg>
-						<p className='text-sm font-medium text-center'>
+					<article className='relative min-h-[17rem] rounded-2xl overflow-hidden shadow-sm border border-brand-blue/15 bg-brand-blue/6'>
+						<img
+							src={selectedServiceOrFallback.imageUrl}
+							alt={selectedServiceOrFallback.title}
+							className='absolute inset-0 h-full w-full object-cover'
+							loading='lazy'
+						/>
+						<div className='absolute inset-0 bg-gradient-to-t from-brand-blue-dark/65 via-brand-blue-dark/20 to-transparent' />
+						<p className='absolute bottom-4 left-4 right-4 text-white text-sm md:text-base font-semibold [text-wrap:balance]'>
 							{selectedServiceOrFallback.title}
 						</p>
 					</article>

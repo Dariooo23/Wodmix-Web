@@ -5,6 +5,7 @@ This directory contains context-specific instructions that apply to particular d
 ## What are Instructions?
 
 Instructions are rules that apply based on context:
+
 - **Directory-scoped** — Apply only in specific folders
 - **Situation-scoped** — Apply in specific scenarios
 
@@ -18,32 +19,33 @@ Unlike agents (personality) and skills (knowledge), instructions are **rules**.
 
 ## Available Instructions
 
-| Instruction | Scope | Purpose |
-|-------------|-------|---------|
-| **[assistant](assistant.instructions.md)** | Global | Base Jointhubs instructions, vault structure |
-| **[projects](projects.instructions.md)** | `Second Brain/Projects/**` | Working in project directories |
-| **[operations](operations.instructions.md)** | `Second Brain/Operations/**` | Operational tasks, daily notes |
-| **[health](health.instructions.md)** | `Second Brain/Personal/Health/**` | Health tracking |
-| **[agents](agents.instructions.md)** | `.github/agents/**` | Agent definitions |
-| **[skills](skills.instructions.md)** | `.github/skills/**` | Skill knowledge files |
+| Instruction                                  | Scope                             | Purpose                                      |
+| -------------------------------------------- | --------------------------------- | -------------------------------------------- |
+| **[assistant](assistant.instructions.md)**   | Global                            | Base Jointhubs instructions, vault structure |
+| **[projects](projects.instructions.md)**     | `Second Brain/Projects/**`        | Working in project directories               |
+| **[operations](operations.instructions.md)** | `Second Brain/Operations/**`      | Operational tasks, daily notes               |
+| **[health](health.instructions.md)**         | `Second Brain/Personal/Health/**` | Health tracking                              |
+| **[agents](agents.instructions.md)**         | `.github/agents/**`               | Agent definitions                            |
+| **[skills](skills.instructions.md)**         | `.github/skills/**`               | Skill knowledge files                        |
 
 Project-specific or private instructions that should not be shared upstream belong in `local/`.
 
 ## Instruction Layers
 
-| Layer | Purpose |
-|-------|---------|
-| Global | Shared rules for the whole vault and repo |
-| Directory-scoped | Shared rules for folders like Operations or Projects |
-| Project-specific | Rules for a single project such as Fenix or Neurohubs |
-| Local | Private rules for your workflow, machine, or experimental setup |
+| Layer            | Purpose                                                         |
+| ---------------- | --------------------------------------------------------------- |
+| Global           | Shared rules for the whole vault and repo                       |
+| Directory-scoped | Shared rules for folders like Operations or Projects            |
+| Project-specific | Rules for a single project such as Fenix or Neurohubs           |
+| Local            | Private rules for your workflow, machine, or experimental setup |
 
 ## How Instructions Work
 
-Instructions use the `applyTo` frontmatter to specify when they apply:
+Instructions use frontmatter with `description` for on-demand discovery and `applyTo` for automatic file matching:
 
 ```yaml
 ---
+description: "Use when working on project state, milestones, and CONTEXT.md updates"
 applyTo: "Second Brain/Projects/**"
 ---
 ```
@@ -54,7 +56,7 @@ When the user is working in a matching directory, these instructions are active.
 
 1. Decide whether the instruction is `shared` or `local`
 2. Create `{scope}.instructions.md` in this directory for shared rules, or in `local/` for private rules
-3. Add `applyTo` frontmatter with glob pattern
+3. Add frontmatter with `description` and `applyTo` glob pattern
 4. Write the instruction rules
 5. Add to this README only for shared instructions
 
@@ -68,6 +70,7 @@ When the user is working in a matching directory, these instructions are active.
 
 ```markdown
 ---
+description: "Use when editing [context]. Covers [key responsibilities/rules]."
 applyTo: "Path/Pattern/**"
 ---
 

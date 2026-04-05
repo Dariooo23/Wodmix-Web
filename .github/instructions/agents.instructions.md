@@ -1,4 +1,5 @@
 ---
+description: "Use when creating or editing custom agents in .github/agents. Covers format, boundaries, and conventions."
 applyTo: '.github/agents/**'
 ---
 

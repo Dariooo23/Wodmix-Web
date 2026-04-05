@@ -1,0 +1,32 @@
+Wodmix - Service Images Sources
+
+License basis:
+- Pexels License: https://www.pexels.com/license/
+- Commercial use allowed, no attribution required (attribution appreciated).
+
+Downloaded for this project on: 2026-04-05
+
+Mappings:
+- service-wod-kan.jpg
+  Source: https://www.pexels.com/photo/plumber-installs-pipe-fittings-6419128/
+
+- service-koparka.jpg
+  Source: https://www.pexels.com/photo/yellow-excavator-at-urban-construction-site-30751525/
+
+- service-co-gaz.jpg
+  Source: https://www.pexels.com/photo/gray-water-heater-in-the-bathroom-9551366/
+
+- service-cwu.jpg
+  Source: https://www.pexels.com/photo/white-and-blue-water-meter-4494656/
+
+- service-przylacza.jpg
+  Source: https://www.pexels.com/photo/pipes-in-close-up-11142768/
+
+- service-zbiorniki.jpg
+  Source: https://www.pexels.com/photo/plastic-water-tank-on-the-tower-6961082/
+
+- service-pompa-ciepla.jpg
+  Source: https://www.pexels.com/photo/view-of-the-air-conditioning-unit-outside-the-building-27134985/
+
+- service-dotacje.jpg
+  Source: https://www.pexels.com/photo/a-man-and-a-woman-discussing-a-document-5816300/

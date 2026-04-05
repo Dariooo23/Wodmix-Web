@@ -177,8 +177,3 @@ Planning generates knowledge. Capture it:
 ---
 
 *Jointhubs: Structure creates freedom.*
-4. Calendar blocks: `🎯 Deep Work: {topic}` (set as Busy)
-
----
-
-*Jointhubs: Plan less, do more of what matters.*

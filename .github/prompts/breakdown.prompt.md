@@ -1,7 +1,7 @@
 ---
 description: 'Break down a complex task into smaller, actionable steps with a structured plan.'
-agent: 'planner'
-tools: ['search/codebase', 'read']
+agent: 'Planner'
+tools: ['search', 'read']
 ---
 
 # Task Breakdown

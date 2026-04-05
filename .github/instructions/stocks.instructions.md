@@ -1,4 +1,5 @@
 ---
+description: "Use when researching stocks in Second Brain/Personal/Finances/stocks. Analysis structure and quality rules."
 applyTo: 'Second Brain/Personal/Finances/stocks/**'
 ---
 
@@ -48,5 +49,3 @@ Each analysis should include:
 
 - Use **Investor** agent for research sessions
 - See `.github/agents/investor.agent.md` for research methodology
-
-```

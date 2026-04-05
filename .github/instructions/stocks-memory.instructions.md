@@ -1,6 +1,6 @@
 ---
 applyTo: 'Second Brain/Personal/Finances/stocks/**'
-description: 'Memory instructions for stocks research'
+description: 'Use when doing stock research. Reuse prior analyses and carry forward source-backed knowledge.'
 ---
 
 # Stocks Memory

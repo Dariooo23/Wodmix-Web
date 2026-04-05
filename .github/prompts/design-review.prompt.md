@@ -1,7 +1,7 @@
 ---
 name: design-review
 description: Review an interface design for UX issues, accessibility, and polish
-agent: designer
+agent: Designer
 tools: ['execute', 'read', 'edit', 'search', 'web', 'github/*', 'todo']
 argument-hint: Share a URL, screenshot, or describe what to review
 ---

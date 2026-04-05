@@ -1,4 +1,5 @@
 ---
+description: "Use when working in Second Brain/Personal/Health. Health tracking conventions and logging rules."
 applyTo: 'Second Brain/Personal/Health/**'
 ---
 

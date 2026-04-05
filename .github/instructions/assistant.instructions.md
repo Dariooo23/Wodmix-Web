@@ -1,4 +1,5 @@
 ---
+description: "Use when working in this workspace. Global baseline rules, vault context, and interaction patterns."
 applyTo: '*'
 ---
 

@@ -1,4 +1,5 @@
 ---
+description: "Use when working in {path/pattern}. Defines scoped rules and conventions for this directory."
 applyTo: '{path/pattern}/**'
 ---
 

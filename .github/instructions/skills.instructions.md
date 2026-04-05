@@ -1,4 +1,5 @@
 ---
+description: "Use when creating or editing skills in .github/skills. Covers SKILL.md structure and skill conventions."
 applyTo: '.github/skills/**'
 ---
 

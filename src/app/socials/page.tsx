@@ -1,43 +1,19 @@
 import type { Metadata } from "next";
-import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa6";
+import { FaFacebookF } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
 export const metadata: Metadata = {
 	title: "Socials",
 	description:
-		"Znajdź Wodmix w mediach społecznościowych i skontaktuj się z nami online.",
+		"Oficjalny profil Facebook firmy Wodmix - realizacje, aktualności i kontakt online dla klientów z Pacanowa, Powiatu Busko-Zdrój i województwa świętokrzyskiego.",
+	keywords: [
+		"Wodmix Facebook",
+		"Facebook Wodmix",
+		"Pacanów",
+		"Powiat Busko-Zdrój",
+		"Świętokrzyskie",
+	],
 };
-
-// TODO: Uzupełnij prawdziwymi linkami i nazwami profili
-const platforms = [
-	{
-		id: "facebook",
-		name: "Facebook",
-		icon: FaFacebookF,
-		bgColor: "#1877F2",
-		href: "#", // TODO: wstaw link do profilu
-		ctaLabel: "Obserwuj",
-	},
-	{
-		id: "instagram",
-		name: "Instagram",
-		icon: FaInstagram,
-		bgColor: "#E1306C",
-		href: "#", // TODO: wstaw link do profilu
-		ctaLabel: "Obserwuj",
-	},
-	{
-		id: "tiktok",
-		name: "TikTok",
-		icon: FaTiktok,
-		bgColor: "#010101",
-		href: "#", // TODO: wstaw link do profilu
-		ctaLabel: "Obserwuj",
-	},
-];
-
-const ctaClass =
-	"border border-brand-blue/30 bg-white/65 text-brand-blue rounded-full font-semibold text-sm backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.75),0_4px_12px_rgba(0,63,115,0.12)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.03] hover:bg-white/80 active:translate-y-0 active:scale-100 px-4 py-1.5";
 
 type Platform = {
 	id: string;
@@ -50,21 +26,38 @@ type Platform = {
 	ctaLabel: string;
 };
 
+const platforms: Platform[] = [
+	{
+		id: "facebook",
+		name: "Facebook",
+		icon: FaFacebookF,
+		bgColor: "#1877F2",
+		handle: "facebook.com/profile.php?id=100088445852904",
+		description:
+			"Aktualności firmy, realizacje instalacji i ważne informacje o usługach Wodmix.",
+		href: "https://www.facebook.com/profile.php?id=100088445852904",
+		ctaLabel: "Obserwuj",
+	},
+];
+
+const ctaClass =
+	"border border-brand-blue/30 bg-white/65 text-brand-blue rounded-full font-semibold text-sm backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.75),0_4px_12px_rgba(0,63,115,0.12)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.03] hover:bg-white/80 active:translate-y-0 active:scale-100 px-4 py-1.5";
+
 export default function SocialsPage() {
 	return (
 		<main className='min-h-[calc(100svh-5rem)]'>
 			<section className='container mx-auto px-4 md:px-8 py-8 md:py-10'>
 				<div className='max-w-4xl mx-auto text-center mb-8'>
 					<h1 className='text-4xl md:text-5xl font-extrabold text-brand-blue mb-3'>
-						Znajdź nas online
+						Znajdź nas na Facebooku
 					</h1>
 					<p className='text-brand-blue-dark text-lg'>
-						Śledź nasze profile, oglądaj realizacje i bądź na bieżąco.
+						Śledź realizacje, nowości ofertowe i aktualności firmy Wodmix.
 					</p>
 				</div>
 
-				<div className='max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-					{(platforms as Platform[]).map(platform => {
+				<div className='max-w-xl mx-auto grid grid-cols-1 gap-4'>
+					{platforms.map(platform => {
 						const Icon = platform.icon;
 
 						return (
@@ -96,7 +89,9 @@ export default function SocialsPage() {
 								{/* CTA */}
 								<a
 									href={platform.href}
-									target={platform.href !== "#" ? "_blank" : undefined}
+									target={
+										platform.href.startsWith("http") ? "_blank" : undefined
+									}
 									rel='noopener noreferrer'
 									className={ctaClass}>
 									{platform.ctaLabel}

@@ -1,7 +1,7 @@
 ---
 description: 'Autonomous problem-solving mode. Agent iterates until fully resolved without user intervention.'
-agent: 'tech-lead'
-tools: ['editFiles', 'runInTerminal', 'search', 'problems', 'testFailure', 'web/fetch', 'changes', 'usages']
+agent: 'Tech Lead'
+tools: ['execute', 'read', 'edit', 'search', 'web', 'todo']
 ---
 
 # Beast Mode
@@ -46,7 +46,7 @@ For each task:
 Before completing:
 
 1. **Run all relevant tests**
-2. **Check for errors** using problems tool
+2. **Check for errors** using available diagnostics and test output
 3. **Verify edge cases**
 4. **Ensure no regressions**
 
@@ -91,7 +91,7 @@ If the user says "resume", "continue", or "try again":
 You are done when:
 - [ ] All todo items are checked `[x]`
 - [ ] Tests pass
-- [ ] No errors in problems view
+- [ ] No unresolved diagnostics in changed files
 - [ ] Code follows project conventions
 - [ ] Changes are verified to work
 

@@ -6,12 +6,12 @@
 
 The agent system has four components:
 
-| Component | Purpose | Location | When Used |
-|-----------|---------|----------|-----------|
-| **Agents** | AI personas with personality | `.github/agents/` | Selected by user for a session |
-| **Skills** | Domain knowledge | `.github/skills/` | Loaded on-demand when relevant |
-| **Prompts** | Reusable workflows | `.github/prompts/` | Triggered with `/name` in chat |
-| **Instructions** | Always-on rules | `.github/instructions/` | Auto-applied based on file patterns |
+| Component        | Purpose                      | Location                | When Used                           |
+| ---------------- | ---------------------------- | ----------------------- | ----------------------------------- |
+| **Agents**       | AI personas with personality | `.github/agents/`       | Selected by user for a session      |
+| **Skills**       | Domain knowledge             | `.github/skills/`       | Loaded on-demand when relevant      |
+| **Prompts**      | Reusable workflows           | `.github/prompts/`      | Triggered with `/name` in chat      |
+| **Instructions** | Always-on rules              | `.github/instructions/` | Auto-applied based on file patterns |
 
 ```
 .github/
@@ -30,6 +30,7 @@ The agent system has four components:
 ### What is an Agent?
 
 An agent is a specialized AI persona with:
+
 - **Personality** — Tone, reasoning style, quirks
 - **Tools** — What capabilities it has access to
 - **Handoffs** — When to suggest switching to another agent
@@ -40,7 +41,7 @@ An agent is a specialized AI persona with:
 ---
 name: Agent Name
 description: When to use this agent
-tools: ['read', 'edit', 'search', 'web', 'todo']
+tools: ["read", "edit", "search", "web", "todo"]
 argument-hint: Optional placeholder text for chat input
 handoffs:
   - label: Button Text
@@ -65,21 +66,21 @@ Personality and behavior instructions here...
 
 ### Available Tools
 
-| Tool | Purpose |
-|------|---------|
-| `read` | Read files |
-| `edit` | Modify files |
-| `search` | Search codebase |
-| `web` | Browse web |
-| `execute` | Run terminal commands |
-| `todo` | Manage todo list |
-| `agent` | Spawn subagents |
-| `github/*` | GitHub operations |
-| `mcp_*` | MCP server tools |
+| Tool       | Purpose               |
+| ---------- | --------------------- |
+| `read`     | Read files            |
+| `edit`     | Modify files          |
+| `search`   | Search codebase       |
+| `web`      | Browse web            |
+| `execute`  | Run terminal commands |
+| `todo`     | Manage todo list      |
+| `agent`    | Spawn subagents       |
+| `github/*` | GitHub operations     |
+| `mcp_*`    | MCP server tools      |
 
 ### Best Practices
 
-- **Personality first**: Define *who* before *what*
+- **Personality first**: Define _who_ before _what_
 - **Minimal tools**: Only grant tools the agent actually needs
 - **Clear handoffs**: Make transitions to other agents smooth
 - **Test the voice**: Run a few conversations, adjust tone
@@ -98,6 +99,7 @@ Personality and behavior instructions here...
 ### What is a Skill?
 
 A skill is a folder of knowledge that agents load on-demand. Skills include:
+
 - Instructions (SKILL.md)
 - Templates
 - Examples
@@ -159,18 +161,22 @@ This means many skills with minimal context cost.
 The context window is a shared resource. Use these patterns to minimize bloat:
 
 **Pattern 1: High-level guide with references**
+
 ```markdown
 # PDF Processing
 
 ## Quick start
+
 Basic example here...
 
 ## Advanced features
+
 - **Forms**: See [FORMS.md](FORMS.md) for complete guide
 - **API reference**: See [REFERENCE.md](REFERENCE.md)
 ```
 
 **Pattern 2: Domain-specific organization**
+
 ```
 skill-name/
 ├── SKILL.md (overview + navigation)
@@ -182,14 +188,17 @@ skill-name/
 
 **Pattern 3: Conditional details**
 Show basic content, link to advanced:
+
 ```markdown
 ## Basic Usage
+
 Do the simple thing.
 
 **For advanced use**: See [ADVANCED.md](ADVANCED.md)
 ```
 
 **Guidelines:**
+
 - Keep SKILL.md under 500 lines
 - Avoid deeply nested references (max 1 level)
 - Structure longer files with table of contents
@@ -224,7 +233,7 @@ A prompt is a reusable workflow triggered by typing `/name` in chat. Unlike agen
 name: prompt-name
 description: What this prompt does
 agent: which-agent-to-use
-tools: ['read', 'edit', 'search']
+tools: ["read", "edit", "search"]
 argument-hint: Placeholder text shown to user
 handoffs:
   - label: Next Step
@@ -257,12 +266,15 @@ Step-by-step instructions for the workflow...
 ### Common Patterns
 
 **Session bookends**: Start/end rituals
+
 - `/daily-kickoff` → `/session-end`
 
 **Planning flows**: Plan → execute → review
+
 - `/plan-week` → work → `/weekly-review`
 
 **Project lifecycle**: Create → update → status
+
 - `/new-project` → `/context-update` → `/project-status`
 
 ### When to Update
@@ -284,6 +296,7 @@ Instructions are rules that auto-apply based on file patterns. Unlike prompts (o
 
 ```markdown
 ---
+description: "Use when editing [context]. Covers [rules/conventions]."
 applyTo: "path/pattern/**"
 ---
 
@@ -295,19 +308,20 @@ Rules that apply when editing files matching the pattern...
 ### Creating New Instructions
 
 1. Create: `.github/instructions/{name}.instructions.md`
-2. Set `applyTo` glob pattern in frontmatter
-3. Write rules and guidelines
-4. Update `.github/instructions/README.md`
+2. Add `description` for on-demand discovery
+3. Set `applyTo` glob pattern in frontmatter
+4. Write rules and guidelines
+5. Update `.github/instructions/README.md`
 
 ### applyTo Patterns
 
-| Pattern | Matches |
-|---------|---------|
-| `**` | All files |
-| `*.py` | Python files at root |
-| `**/*.py` | All Python files |
-| `src/**` | All files in src/ |
-| `Second Brain/Projects/**` | All project files |
+| Pattern                    | Matches              |
+| -------------------------- | -------------------- |
+| `**`                       | All files            |
+| `*.py`                     | Python files at root |
+| `**/*.py`                  | All Python files     |
+| `src/**`                   | All files in src/    |
+| `Second Brain/Projects/**` | All project files    |
 
 ### Best Practices
 
@@ -329,6 +343,7 @@ Rules that apply when editing files matching the pattern...
 ### Shared Registry Docs
 
 This repo currently uses:
+
 - `.github/README_github.md` for high-level orientation
 - `.github/agents/README.md` for shared agent registry
 - `.github/skills/README.md` for shared skill registry
@@ -402,12 +417,12 @@ This repo currently uses:
 
 ## File Naming Conventions
 
-| Type | Format | Example |
-|------|--------|---------|
-| Agent | `{name}.agent.md` | `tech-lead.agent.md` |
-| Skill folder | `{name}/` | `daily-log/` |
-| Skill file | `SKILL.md` | `SKILL.md` |
-| Prompt | `{name}.prompt.md` | `weekly-review.prompt.md` |
+| Type         | Format                   | Example                    |
+| ------------ | ------------------------ | -------------------------- |
+| Agent        | `{name}.agent.md`        | `tech-lead.agent.md`       |
+| Skill folder | `{name}/`                | `daily-log/`               |
+| Skill file   | `SKILL.md`               | `SKILL.md`                 |
+| Prompt       | `{name}.prompt.md`       | `weekly-review.prompt.md`  |
 | Instructions | `{name}.instructions.md` | `projects.instructions.md` |
 
 All names: lowercase, hyphenated, no spaces.

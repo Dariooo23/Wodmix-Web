@@ -21,11 +21,27 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
 	title: {
-		default: "Strona główna | Wodmix",
+		default: "Strona główna",
 		template: "%s | Wodmix",
 	},
 	description:
-		"Kompleksowe instalacje sanitarne, pompy ciepła i usługi koparko-ładowarką. Skontaktuj się z firmą Wodmix.",
+		"Wodmix: instalacje wodno-kanalizacyjne, C.O. i gaz, pompy ciepła, prace ziemne oraz wsparcie w programie Czyste Powietrze. Pacanów, Powiat Busko-Zdrój i województwo świętokrzyskie.",
+	metadataBase: new URL("https://wodmix.pl"),
+	openGraph: {
+		title: "Wodmix | Instalacje, Pompy Ciepła, Prace Ziemne",
+		description:
+			"Kompleksowe usługi instalacyjne i ziemne dla klientów z Pacanowa, Powiatu Busko-Zdrój i województwa świętokrzyskiego.",
+		url: "https://wodmix.pl",
+		siteName: "Wodmix",
+		locale: "pl_PL",
+		type: "website",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Wodmix | Instalacje, Pompy Ciepła, Prace Ziemne",
+		description:
+			"Instalacje sanitarne, pompy ciepła, prace koparko-ładowarką i doradztwo dotacyjne - Pacanów, Powiat Busko-Zdrój, Świętokrzyskie.",
+	},
 	icons: {
 		icon: "/logo-icon.png?v=2",
 		shortcut: "/logo-icon.png?v=2",

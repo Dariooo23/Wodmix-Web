@@ -1,4 +1,5 @@
 ---
+description: "Use when working in Second Brain/Operations. Daily, weekly, and meeting-note operating rules."
 applyTo: "Second Brain/Operations/**"
 ---
 

@@ -1,4 +1,5 @@
 ---
+description: "Use when working in Second Brain/Projects. Project lifecycle and CONTEXT.md maintenance rules."
 applyTo: "Second Brain/Projects/**"
 ---
 

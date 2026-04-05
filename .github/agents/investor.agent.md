@@ -153,5 +153,3 @@ Every response ends with:
 ---
 
 *Jointhubs: Your money, your research, your decisions.*
-
-```
