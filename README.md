@@ -23,7 +23,9 @@ Podgląd: http://localhost:3000
 - / - strona główna
 - /oferta - katalog usług
 - /oddzialy - lokalizacje i kontakt do oddziałów
-- /kontakt - formularz kontaktowy (frontend-only)
+- /o-nas - historia firmy (przewijanie krokowe między etapami)
+- /socials - profil na Facebooku
+- /kontakt - przekierowanie na /oddzialy
 
 ## Struktura projektu
 
@@ -37,3 +39,23 @@ Podgląd: http://localhost:3000
 ```bash
 npm run lint
 ```
+
+## SEO — konfiguracja
+
+Zmienne środowiskowe (Vercel → Settings → Environment Variables):
+
+| Zmienna | Opis |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | Adres strony (canonical, sitemap, Open Graph). Domyślnie `https://wodmix.pl`. |
+| `GOOGLE_SITE_VERIFICATION` | Kod z Google Search Console (metoda „tag HTML”). |
+
+Jedno źródło prawdy o firmie: `src/lib/site.ts` (nazwa, telefony, e-mail, social media)
+oraz `src/data/services.ts` (adresy i godziny otwarcia sklepów). Dane te trafiają
+do treści stron, stopki i danych strukturalnych schema.org — muszą być identyczne
+z wizytówkami w Profilu Firmy w Google.
+
+Generowane automatycznie: `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest`,
+`/opengraph-image` (podgląd linku), favicony z `src/app/`.
+
+Stare adresy z WordPressa (`/pompy-ciepla`, `/sklep` itd.) są przekierowane
+w `next.config.ts` (`redirects`).

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import { Service } from "@/types";
 
 interface ServiceCatalogProps {
@@ -146,33 +147,42 @@ export const ServiceCatalog = ({ initialServices }: ServiceCatalogProps) => {
 				</div>
 			</div>
 
-			{selectedServiceOrFallback && (
-				<section className='max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-7 items-stretch'>
+			{/*
+			 * Wszystkie panele są w HTML (nieaktywne mają `hidden`) — dzięki temu
+			 * Google indeksuje opisy wszystkich usług, nie tylko pierwszej.
+			 */}
+			{displayedServices.map(service => (
+				<section
+					key={service.id}
+					id={`usluga-${service.id}`}
+					hidden={service.id !== selectedServiceOrFallback?.id}
+					className='max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-7 items-stretch'>
 					<article className='relative min-h-[17rem] rounded-2xl overflow-hidden shadow-sm border border-brand-blue/15 bg-brand-blue/6'>
-						<img
-							src={selectedServiceOrFallback.imageUrl}
-							alt={selectedServiceOrFallback.title}
-							className='absolute inset-0 h-full w-full object-cover'
-							loading='lazy'
+						<Image
+							src={service.imageUrl}
+							alt={`${service.title} – Wodmix`}
+							fill
+							sizes='(min-width: 1024px) 50vw, 100vw'
+							className='object-cover'
 						/>
 						<div className='absolute inset-0 bg-gradient-to-t from-brand-blue-dark/65 via-brand-blue-dark/20 to-transparent' />
 						<p className='absolute bottom-4 left-4 right-4 text-white text-sm md:text-base font-semibold [text-wrap:balance]'>
-							{selectedServiceOrFallback.title}
+							{service.title}
 						</p>
 					</article>
 
 					<article className='rounded-2xl border border-brand-blue/10 bg-white shadow-lg p-6 md:p-8'>
 						<p className='inline-block rounded-full bg-brand-blue/10 text-brand-blue font-semibold px-3 py-1 mb-4'>
-							{getCategoryLabel(selectedServiceOrFallback.category)}
+							{getCategoryLabel(service.category)}
 						</p>
-						<h4 className='text-2xl font-extrabold text-brand-blue mb-3'>
+						<h2 className='text-2xl font-extrabold text-brand-blue mb-3'>
 							Szczegóły oferty
-						</h4>
+						</h2>
 						<p className='text-brand-blue-dark leading-relaxed mb-4'>
-							{selectedServiceOrFallback.description}
+							{service.description}
 						</p>
 						<p className='font-semibold text-brand-blue-dark mb-6'>
-							{getCategoryDetail(selectedServiceOrFallback)}
+							{getCategoryDetail(service)}
 						</p>
 						<a
 							href='tel:+48888858998'
@@ -181,7 +191,7 @@ export const ServiceCatalog = ({ initialServices }: ServiceCatalogProps) => {
 						</a>
 					</article>
 				</section>
-			)}
+			))}
 
 			{displayedServices.length === 0 && (
 				<div className='max-w-2xl mx-auto text-center py-8 text-brand-blue-dark'>

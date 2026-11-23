@@ -1,29 +1,47 @@
-import { Service, StoreLocation } from "@/types";
+import { OpeningHours, Service, StoreLocation } from "@/types";
+
+const defaultOpeningHours: OpeningHours[] = [
+	{
+		days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+		label: "Poniedziałek - Piątek",
+		opens: "06:30",
+		closes: "17:00",
+	},
+	{ days: ["Saturday"], label: "Sobota", opens: "07:00", closes: "13:00" },
+];
 
 export const storesData: StoreLocation[] = [
 	{
 		id: "PACANOW",
 		city: "Pacanów",
+		cityLocative: "Pacanowie",
 		street: "Oleśnicka 1",
 		postalCode: "28-133",
+		region: "świętokrzyskie",
 		phones: {
 			primary: "+48 888 858 998",
 		},
 		email: "wodmix@wp.pl",
-		googleMapsUrl: "https://maps.google.com/?q=Olesnicka+1,+28-133+Pacanow",
+		googleMapsUrl:
+			"https://www.google.com/maps/dir/?api=1&destination=Ole%C5%9Bnicka%201%2C%2028-133%20Pacan%C3%B3w",
 		imageUrl: "/Pacanow-Picture.png",
+		openingHours: defaultOpeningHours,
 	},
 	{
 		id: "LUBNICE",
 		city: "Łubnice",
-		street: "ŁUBNICE 73A",
+		cityLocative: "Łubnicach",
+		street: "Łubnice 73A",
 		postalCode: "28-232",
+		region: "świętokrzyskie",
 		phones: {
 			primary: "+48 888 858 449",
 		},
 		email: "wodmix@wp.pl",
-		googleMapsUrl: "https://maps.google.com/?q=Lubnice+73A,+28-232+Lubnice",
+		googleMapsUrl:
+			"https://www.google.com/maps/dir/?api=1&destination=%C5%81ubnice%2073A%2C%2028-232%20%C5%81ubnice",
 		imageUrl: "/Lubnice-Picture.png",
+		openingHours: defaultOpeningHours,
 	},
 ];
 

@@ -15,15 +15,29 @@
 		@apply bg-white text-gray-900 antialiased selection:bg-brand-blue selection:text-white;
 	}
 
-	html.subpage-no-scrollbar,
-	body.subpage-no-scrollbar {
+	/*
+	 * Pasek przewijania ukryty na WSZYSTKICH stronach. Wcześniej był ukrywany
+	 * JS-em tylko na podstronach, więc przejście strona główna <-> podstrona
+	 * zmieniało szerokość viewportu i cała strona „skakała” w bok.
+	 */
+	html {
 		-ms-overflow-style: none;
 		scrollbar-width: none;
 	}
 
-	html.subpage-no-scrollbar::-webkit-scrollbar,
-	body.subpage-no-scrollbar::-webkit-scrollbar {
+	html::-webkit-scrollbar {
 		display: none;
+	}
+
+	/*
+	 * Przyciąganie (CSS scroll snap) na stronach z klasą `.scroll-snap-page`
+	 * (np. /o-nas). Dotyk i klawiaturę obsługuje przeglądarka; kółko myszy
+	 * i touchpad krokuje <SnapScrollWheel />, który czyta te same punkty.
+	 * `scroll-padding-top` = wysokość nagłówka (h-20 + 1px border-b).
+	 */
+	html:has(.scroll-snap-page) {
+		scroll-snap-type: y mandatory;
+		scroll-padding-top: calc(5rem + 1px);
 	}
 }
 

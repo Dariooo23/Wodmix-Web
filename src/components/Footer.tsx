@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { storesData } from "@/data/services";
 import {
 	FiArrowUpRight,
 	FiMail,
@@ -18,13 +19,15 @@ const footerLinks = [
 
 export const Footer = () => {
 	return (
-		<footer className='border-t border-brand-blue-dark/10 bg-brand-blue-dark text-white'>
+		// `snap-end`: punkt przyciągania na stronach ze scroll snap (np. /o-nas),
+		// bez niego stopka byłaby tam nieosiągalna. Gdzie indziej nie ma wpływu.
+		<footer className='snap-end border-t border-brand-blue-dark/10 bg-brand-blue-dark text-white'>
 			<div className='container mx-auto px-4 py-12 md:px-8 md:py-14'>
 				<div className='grid gap-10 md:grid-cols-[1.3fr_0.9fr_1fr] md:gap-8 lg:gap-12'>
 					<div>
 						<Link
 							href='/'
-							aria-label='Przejdz do strony glownej'
+							aria-label='Przejdź do strony głównej'
 							className='group inline-flex items-center rounded-xl px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2'>
 							<div className='rounded-full border border-white/30 bg-white/10 px-4 py-2 shadow-[0_6px_18px_rgba(0,0,0,0.18)] transform-gpu transition-[transform,background-color,border-color,box-shadow] duration-200 ease-out group-hover:-translate-y-0.5 group-hover:scale-[1.03] group-hover:bg-white/18 group-hover:border-white/45 group-hover:shadow-[0_10px_24px_rgba(0,0,0,0.22)] group-active:translate-y-0 group-active:scale-100 group-active:bg-white/16'>
 								<Image
@@ -37,8 +40,9 @@ export const Footer = () => {
 							</div>
 						</Link>
 						<p className='mt-5 max-w-md text-sm leading-7 text-white/72 md:text-[15px]'>
-							Wodmix to lokalna firma realizująca instalacje sanitarne, systemy
-							grzewcze i prace ziemne dla klientów z regionu.
+							Wodmix to lokalna firma z Pacanowa i Łubnic, która od 2012 roku
+							realizuje instalacje sanitarne, systemy grzewcze, pompy ciepła i
+							prace ziemne dla klientów z regionu świętokrzyskiego.
 						</p>
 					</div>
 
@@ -85,12 +89,21 @@ export const Footer = () => {
 								<FiMail className='h-4 w-4 shrink-0' aria-hidden='true' />
 								<span>wodmix@wp.pl</span>
 							</a>
-							<Link
-								href='/oddzialy'
-								className='inline-flex items-center gap-2 transition-colors duration-200 hover:text-white'>
-								<FiMapPin className='h-4 w-4 shrink-0' aria-hidden='true' />
-								<span>Zobacz nasze oddziały</span>
-							</Link>
+							{storesData.map(store => (
+								<Link
+									key={store.id}
+									href={`/oddzialy#${store.id.toLowerCase()}`}
+									className='inline-flex items-start gap-2 transition-colors duration-200 hover:text-white'>
+									<FiMapPin
+										className='mt-0.5 h-4 w-4 shrink-0'
+										aria-hidden='true'
+									/>
+									<address className='not-italic'>
+										Oddział {store.city}: {store.street}, {store.postalCode}{" "}
+										{store.city}
+									</address>
+								</Link>
+							))}
 							<Link
 								href='/socials'
 								className='inline-flex items-center gap-2 transition-colors duration-200 hover:text-white'>

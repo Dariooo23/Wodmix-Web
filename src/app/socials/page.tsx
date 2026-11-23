@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
 import { FaFacebookF } from "react-icons/fa6";
 import type { IconType } from "react-icons";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-	title: "Socials",
+export const metadata: Metadata = pageMetadata({
+	title: "Wodmix na Facebooku",
 	description:
-		"Oficjalny profil Facebook firmy Wodmix - realizacje, aktualności i kontakt online dla klientów z Pacanowa, Powiatu Busko-Zdrój i województwa świętokrzyskiego.",
-	keywords: [
-		"Wodmix Facebook",
-		"Facebook Wodmix",
-		"Pacanów",
-		"Powiat Busko-Zdrój",
-		"Świętokrzyskie",
-	],
-};
+		"Oficjalny profil Facebook firmy Wodmix – realizacje, aktualności i kontakt online dla klientów z Pacanowa, Łubnic i województwa świętokrzyskiego.",
+	path: "/socials",
+});
 
 type Platform = {
 	id: string;

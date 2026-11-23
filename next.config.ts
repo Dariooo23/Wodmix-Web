@@ -57,6 +57,31 @@ const nextConfig: NextConfig = {
     // ogranicza możliwość zapychania cache'u losowymi wariantami URL.
     localPatterns: [{ pathname: "/**", search: "" }],
   },
+  /**
+   * Stare adresy strony na WordPressie (wodmix.pl) — po przepięciu domeny
+   * na nową stronę przekierowania 308 przenoszą ich pozycje w Google.
+   */
+  async redirects() {
+    const toOffer = [
+      "/instalacje-wodno-kan",
+      "/instalacje-c-o-gaz",
+      "/pompy-ciepla",
+      "/koparkoladowarka",
+      "/czyste-powietrze",
+      "/2026/10/20/czyste-powietrze-2026-zmiany",
+    ];
+
+    return [
+      ...toOffer.map((source) => ({
+        source,
+        destination: "/oferta",
+        permanent: true,
+      })),
+      { source: "/sklep", destination: "/oddzialy", permanent: true },
+      { source: "/category/:path*", destination: "/", permanent: true },
+      { source: "/author/:path*", destination: "/", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

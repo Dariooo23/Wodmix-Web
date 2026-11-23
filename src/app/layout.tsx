@@ -1,52 +1,59 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Footer } from "@/components/Footer";
 import { FloatingContactFab } from "@/components/FloatingContactFab";
 import { Header } from "@/components/Header";
 import { PageFogReveal } from "@/components/PageFogReveal";
-import { RouteBodyClass } from "@/components/RouteBodyClass";
 import { WaterBackground } from "@/components/WaterBackground";
-import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import {
+	BUSINESS,
+	DEFAULT_DESCRIPTION,
+	DEFAULT_TITLE,
+	SITE_URL,
+} from "@/lib/site";
 import "./globals.css";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
+	metadataBase: new URL(SITE_URL),
 	title: {
-		default: "Strona główna",
+		default: DEFAULT_TITLE,
 		template: "%s | Wodmix",
 	},
-	description:
-		"Wodmix: instalacje wodno-kanalizacyjne, C.O. i gaz, pompy ciepła, prace ziemne oraz wsparcie w programie Czyste Powietrze. Pacanów, Powiat Busko-Zdrój i województwo świętokrzyskie.",
-	metadataBase: new URL("https://wodmix.pl"),
+	description: DEFAULT_DESCRIPTION,
+	applicationName: BUSINESS.name,
+	creator: BUSINESS.name,
+	publisher: BUSINESS.name,
 	openGraph: {
-		title: "Wodmix | Instalacje, Pompy Ciepła, Prace Ziemne",
-		description:
-			"Kompleksowe usługi instalacyjne i ziemne dla klientów z Pacanowa, Powiatu Busko-Zdrój i województwa świętokrzyskiego.",
-		url: "https://wodmix.pl",
-		siteName: "Wodmix",
-		locale: "pl_PL",
 		type: "website",
+		locale: "pl_PL",
+		siteName: BUSINESS.name,
+		title: DEFAULT_TITLE,
+		description: DEFAULT_DESCRIPTION,
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Wodmix | Instalacje, Pompy Ciepła, Prace Ziemne",
-		description:
-			"Instalacje sanitarne, pompy ciepła, prace koparko-ładowarką i doradztwo dotacyjne - Pacanów, Powiat Busko-Zdrój, Świętokrzyskie.",
+		title: DEFAULT_TITLE,
+		description: DEFAULT_DESCRIPTION,
 	},
-	icons: {
-		icon: "/logo-icon.png?v=2",
-		shortcut: "/logo-icon.png?v=2",
-		apple: "/logo-icon.png?v=2",
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			"max-image-preview": "large",
+			"max-snippet": -1,
+			"max-video-preview": -1,
+		},
 	},
+	// Kod weryfikacyjny Google Search Console (metoda „tag HTML”) — ustaw w env.
+	verification: {
+		google: process.env.GOOGLE_SITE_VERIFICATION,
+	},
+};
+
+export const viewport: Viewport = {
+	themeColor: "#003f73",
 };
 
 export default function RootLayout({
@@ -56,11 +63,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='pl'>
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+			<body>
 				<WaterBackground />
 				<div className='relative z-10'>
-					<RouteBodyClass />
 					<Header />
 					<PageFogReveal>{children}</PageFogReveal>
 					<FloatingContactFab />

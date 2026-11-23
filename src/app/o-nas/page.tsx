@@ -1,22 +1,15 @@
 import type { Metadata } from "next";
-import { HomeScrollJump } from "@/components/HomeScrollJump";
+import { JsonLd } from "@/components/JsonLd";
+import { SnapScrollWheel } from "@/components/SnapScrollWheel";
+import { pageMetadata } from "@/lib/site";
+import { breadcrumbGraph } from "@/lib/structured-data";
 
-export const metadata: Metadata = {
-	title: "O nas",
+export const metadata: Metadata = pageMetadata({
+	title: "O nas – historia firmy od 2012 roku",
 	description:
-		"Poznaj historię Wodmix z Pacanowa. Od 2012 roku realizujemy instalacje i prace ziemne na terenie Powiatu Busko-Zdrój oraz województwa świętokrzyskiego.",
-	keywords: [
-		"Wodmix",
-		"o nas",
-		"historia firmy",
-		"instalacje sanitarne",
-		"pompy ciepła",
-		"Pacanów",
-		"Łubnice",
-		"Powiat Busko-Zdrój",
-		"Świętokrzyskie",
-	],
-};
+		"Poznaj historię Wodmix z Pacanowa. Od 2012 roku realizujemy instalacje i prace ziemne na terenie powiatu buskiego i województwa świętokrzyskiego.",
+	path: "/o-nas",
+});
 
 const historyMilestones = [
 	{
@@ -72,15 +65,12 @@ const historyMilestones = [
 
 export default function AboutPage() {
 	return (
-		<main>
-			<HomeScrollJump
-				targetIds={historyMilestones.map(
-					milestone => `historia-${milestone.year}`,
-				)}
-				offset={256}
-			/>
+		// `.scroll-snap-page` włącza przyciąganie do etapów historii (globals.css).
+		<main className='scroll-snap-page'>
+			<JsonLd data={breadcrumbGraph("O nas", "/o-nas")} />
+			<SnapScrollWheel />
 
-			<section className='relative h-[calc(100svh-5rem)] flex items-center justify-center overflow-hidden'>
+			<section className='relative h-[calc(100svh-5rem)] snap-start snap-always flex items-center justify-center overflow-hidden'>
 				<div className='container mx-auto px-4 md:px-8 text-center'>
 					<p className='text-brand-blue font-semibold tracking-widest uppercase text-xs mb-4'>
 						Lokalna firma od 2012 roku
@@ -146,7 +136,8 @@ export default function AboutPage() {
 								<div
 									key={milestone.year}
 									id={`historia-${milestone.year}`}
-									className='relative'>
+									data-snap-point
+									className='relative snap-center snap-always'>
 									<div className='absolute left-4 -translate-x-1/2 top-0 z-10 md:left-1/2'>
 										<div className='bg-brand-blue text-white text-xs font-extrabold px-3 py-1.5 rounded-full shadow-md whitespace-nowrap'>
 											{milestone.year}

@@ -58,7 +58,7 @@ export const Header = () => {
         {/* Sekcja Logo */}
         <Link
           href="/"
-          aria-label="Przejdz do strony glownej"
+          aria-label="Przejdź do strony głównej"
           className="group inline-flex items-center rounded-xl px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
         >
           <div className="rounded-full border border-white/30 bg-white/10 px-4 py-2 shadow-[0_6px_18px_rgba(0,0,0,0.18)] transform-gpu transition-[transform,background-color,border-color,box-shadow] duration-200 ease-out group-hover:-translate-y-0.5 group-hover:scale-[1.03] group-hover:bg-white/18 group-hover:border-white/45 group-hover:shadow-[0_10px_24px_rgba(0,0,0,0.22)] group-active:translate-y-0 group-active:scale-100 group-active:bg-white/16">
