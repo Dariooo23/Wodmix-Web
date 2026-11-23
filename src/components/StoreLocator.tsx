@@ -82,7 +82,8 @@ export const StoreLocator = ({ stores }: StoreLocatorProps) => {
 								title={`Mapa Google oddziału ${store.city}`}
 								src={embedMapUrl}
 								loading='lazy'
-								referrerPolicy='no-referrer-when-downgrade'
+								referrerPolicy='strict-origin-when-cross-origin'
+								sandbox='allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox'
 								className='w-full h-52 md:h-56'
 							/>
 						</div>
